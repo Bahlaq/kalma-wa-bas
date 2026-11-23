@@ -1,13 +1,27 @@
+# Codemagic: Android APK + iOS TestFlight
+# Flutter project lives in /app
+#
+# Setup once in Codemagic UI:
+# 1) Android: upload a keystore and name the reference `kalma_keystore`
+# 2) iOS: add App Store Connect API key; name the integration `KalmaWaBas`
+#    then add Apple Distribution cert + App Store profile for com.bahlaq.kalmaWaBas
+# 3) Create the app record in App Store Connect before first TestFlight upload
+
 workflows:
-  kalma-android:
-    name: Kalma Wa Bas Android
+  kalma-android-apk:
+    name: Kalma Wa Bas — Android APK
     max_build_duration: 60
     instance_type: mac_mini_m2
     environment:
       flutter: stable
+      android_signing:
+        - kalma_keystore
       vars:
         PACKAGE_NAME: "com.bahlaq.kalma_wa_bas"
     scripts:
+      - name: Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/app/android/local.properties"
       - name: Get packages
         script: |
           cd app
@@ -20,12 +34,15 @@ workflows:
         script: |
           cd app
           flutter test
-      - name: Build Android APK
+      - name: Build release APK
         script: |
           cd app
-          flutter build apk --release
+          flutter build apk --release \
+            --build-name=1.0.$BUILD_NUMBER \
+            --build-number=$BUILD_NUMBER
     artifacts:
       - app/build/app/outputs/**/*.apk
+      - app/build/app/outputs/**/mapping.txt
     publishing:
       email:
         recipients:
@@ -33,3 +50,62 @@ workflows:
         notify:
           success: true
           failure: true
+
+  kalma-ios-testflight:
+    name: Kalma Wa Bas — iOS TestFlight
+    max_build_duration: 90
+    instance_type: mac_mini_m2
+    integrations:
+      app_store_connect: KalmaWaBas
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.bahlaq.kalmaWaBas
+      vars:
+        APP_STORE_APPLE_ID: "" # optional: numeric App Store Connect app id
+    scripts:
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Get packages
+        script: |
+          cd app
+          flutter pub get
+      - name: Install CocoaPods
+        script: |
+          find "$CM_BUILD_DIR/app/ios" -name "Podfile" -execdir pod install \;
+      - name: Analyze
+        script: |
+          cd app
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Unit tests
+        script: |
+          cd app
+          flutter test
+      - name: Build IPA
+        script: |
+          cd app
+          flutter build ipa --release \
+            --build-name=1.0.$BUILD_NUMBER \
+            --build-number=$BUILD_NUMBER \
+            --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - app/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      email:
+        recipients:
+          - m.bahlaq94@gmail.com
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        # Uncomment and set after you create a TestFlight beta group:
+        # beta_groups:
+        #   - Internal
+        submit_to_app_store: false

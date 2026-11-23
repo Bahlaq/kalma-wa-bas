@@ -13,7 +13,15 @@ flutter run
 
 ## Codemagic
 
-الملف [`../codemagic.yaml`](../codemagic.yaml) يبني APK أندرويد بعد `flutter test`. اربط المستودع في Codemagic واختر workflow `kalma-android`.
+الملف [`../codemagic.yaml`](../codemagic.yaml) فيه workflowين:
+
+| Workflow | الناتج |
+|---|---|
+| `kalma-android-apk` | APK أندرويد موقّع |
+| `kalma-ios-testflight` | IPA + رفع لـ TestFlight |
+
+**أندرويد:** ارفع keystore في Codemagic باسم المرجع `kalma_keystore`.  
+**iOS:** أضف مفتاح App Store Connect باسم التكامل `KalmaWaBas`، وشهادة Distribution + provisioning لـ `com.bahlaq.kalmaWaBas`، وأنشئ التطبيق في App Store Connect قبل أول رفع.
 
 ## الهيكل
 

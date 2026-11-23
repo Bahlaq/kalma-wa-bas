@@ -6,7 +6,7 @@
 
 المجلد [`app/`](app/) هو تطبيق Flutter الأصلي (أندرويد / iOS).
 
-- البناء السحابي: [`codemagic.yaml`](codemagic.yaml)
+- البناء السحابي: [`codemagic.yaml`](codemagic.yaml) → Android APK + iOS TestFlight
 - التفاصيل: [`app/README.md`](app/README.md)
 
 ```sh
