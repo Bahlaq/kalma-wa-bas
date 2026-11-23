@@ -1,0 +1,17 @@
+arabic.woff
+Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic)
+Noto Sans Arabic
+This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL
+https://scripts.sil.org/OFL
+
+arabic-bold.woff
+Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic)
+Noto Sans Arabic
+This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL
+https://scripts.sil.org/OFL
+
+display.woff
+Copyright 2015-2022 The Reem Kufi Project Authors (https://github.com/aliftype/reem-kufi).
+Reem Kufi
+This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL
+https://scripts.sil.org/OFL

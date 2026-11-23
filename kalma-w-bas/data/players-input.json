@@ -1,0 +1,3035 @@
+[
+  {
+    "id": "p001",
+    "name": "ليونيل ميسي",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p002",
+    "name": "كريستيانو رونالدو",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p003",
+    "name": "نيمار",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p004",
+    "name": "كيليان مبابي",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p005",
+    "name": "إيرلينغ هالاند",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p006",
+    "name": "روبرت ليفاندوفسكي",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p007",
+    "name": "هاري كين",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p008",
+    "name": "لوكا مودريتش",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p009",
+    "name": "كيفن دي بروين",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p010",
+    "name": "فينيسيوس جونيور",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p011",
+    "name": "جود بيلينغهام",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p012",
+    "name": "لامين يامال",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p013",
+    "name": "أنطوان غريزمان",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p014",
+    "name": "لويس سواريز",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p015",
+    "name": "إيدين هازارد",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p016",
+    "name": "غاريث بيل",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p017",
+    "name": "سيرخيو راموس",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p018",
+    "name": "فيرجيل فان دايك",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p019",
+    "name": "مانويل نوير",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p020",
+    "name": "تيبو كورتوا",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p021",
+    "name": "أليسون بيكر",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p022",
+    "name": "بول بوغبا",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p023",
+    "name": "أنخيل دي ماريا",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p024",
+    "name": "سون هيونغ مين",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p025",
+    "name": "ساديو ماني",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p026",
+    "name": "كريم بنزيما",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p027",
+    "name": "فيرناندو توريس",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p028",
+    "name": "مارسيلو",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p029",
+    "name": "سيرجيو أغويرو",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p030",
+    "name": "دييغو كوستا",
+    "difficulty": "easy",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p031",
+    "name": "زين الدين زيدان",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p032",
+    "name": "رونالدينيو",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p033",
+    "name": "رونالدو نازاريو",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p034",
+    "name": "ديفيد بيكهام",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p035",
+    "name": "تييري هنري",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p036",
+    "name": "كاكا",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p037",
+    "name": "أندريس إنييستا",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p038",
+    "name": "تشافي هيرنانديز",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p039",
+    "name": "إيكر كاسياس",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p040",
+    "name": "جانلويجي بوفون",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p041",
+    "name": "كارليس بويول",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p042",
+    "name": "زلاتان إبراهيموفيتش",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p043",
+    "name": "واين روني",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p044",
+    "name": "فرانشيسكو توتي",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p045",
+    "name": "أندريا بيرلو",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p046",
+    "name": "ستيفن جيرارد",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p047",
+    "name": "فرانك لامبارد",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p048",
+    "name": "روبرتو كارلوس",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p049",
+    "name": "ديدييه دروغبا",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p050",
+    "name": "صامويل إيتو",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p051",
+    "name": "فرانك ريبيري",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p052",
+    "name": "آريين روبن",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p053",
+    "name": "ديفيد فيا",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p054",
+    "name": "راؤول غونزاليس",
+    "difficulty": "easy",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p055",
+    "name": "محمد صلاح",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p056",
+    "name": "رياض محرز",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p057",
+    "name": "أشرف حكيمي",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p058",
+    "name": "حكيم زياش",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p059",
+    "name": "سالم الدوسري",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p060",
+    "name": "ياسر القحطاني",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p061",
+    "name": "محمد أبو تريكة",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p062",
+    "name": "محمد نور",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p063",
+    "name": "سامي الجابر",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p064",
+    "name": "ماجد عبدالله",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p065",
+    "name": "عمر عبد الرحمن",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p066",
+    "name": "حسين الشحات",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p067",
+    "name": "موسى التعمري",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p068",
+    "name": "ياسين بونو",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p069",
+    "name": "علي الحبسي",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p070",
+    "name": "علي مبخوت",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p071",
+    "name": "حسن الهيدوس",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p072",
+    "name": "بغداد بونجاح",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p073",
+    "name": "يوسف النصيري",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p074",
+    "name": "مهدي بنعطية",
+    "difficulty": "easy",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p075",
+    "name": "برونو فيرنانديز",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p076",
+    "name": "برناردو سيلفا",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p077",
+    "name": "رودري",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p078",
+    "name": "فيل فودين",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p079",
+    "name": "بوكايو ساكا",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p080",
+    "name": "كول بالمر",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p081",
+    "name": "ديكلان رايس",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p082",
+    "name": "بيدري",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p083",
+    "name": "غافي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p084",
+    "name": "فرينكي دي يونغ",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p085",
+    "name": "لاوتارو مارتينيز",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p086",
+    "name": "جوليان ألفاريز",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p087",
+    "name": "رودريغو",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p088",
+    "name": "رافينيا",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p089",
+    "name": "عثمان ديمبيلي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p090",
+    "name": "أشرف بن شرقي",
+    "difficulty": "medium",
+    "tags": [
+      "arab",
+      "world"
+    ]
+  },
+  {
+    "id": "p091",
+    "name": "فيديريكو فالفيردي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p092",
+    "name": "توني كروس",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p093",
+    "name": "إيفان راكيتيتش",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p094",
+    "name": "إيفان بيريشيتش",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p095",
+    "name": "إدين دجيكو",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p096",
+    "name": "روبرتو فيرمينو",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p097",
+    "name": "فابينيو",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p098",
+    "name": "نغولو كانتي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p099",
+    "name": "باولو ديبالا",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p100",
+    "name": "دوسان فلاهوفيتش",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p101",
+    "name": "فيكتور أوسيمين",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p102",
+    "name": "روميلو لوكاكو",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p103",
+    "name": "ألكسندر ميتروفيتش",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p104",
+    "name": "سيرغي ميلينكوفيتش سافيتش",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p105",
+    "name": "كاليدو كوليبالي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p106",
+    "name": "روبن دياز",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p107",
+    "name": "جواو كانسيلو",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p108",
+    "name": "دانيل كارفاخال",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p109",
+    "name": "ترينت ألكسندر أرنولد",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p110",
+    "name": "أندرو روبرتسون",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p111",
+    "name": "كاي هافرتز",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p112",
+    "name": "توماس مولر",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p113",
+    "name": "جوشوا كيميش",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p114",
+    "name": "أنطونيو روديغر",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p115",
+    "name": "ماتس هوملز",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p116",
+    "name": "ماركو رويس",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p117",
+    "name": "إلكاي غوندوغان",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p118",
+    "name": "تشيرو إيموبيلي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p119",
+    "name": "لورينزو إنسيني",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p120",
+    "name": "ماركو فيراتي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p121",
+    "name": "سيرجيو بوسكيتس",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p122",
+    "name": "جيرارد بيكيه",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p123",
+    "name": "جوردي ألبا",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p124",
+    "name": "بيير إيميريك أوباميانغ",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p125",
+    "name": "ألكسيس سانشيز",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p126",
+    "name": "أرتورو فيدال",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p127",
+    "name": "جيمس رودريغيز",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p128",
+    "name": "راداميل فالكاو",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p129",
+    "name": "جورجيو كييليني",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p130",
+    "name": "ليوناردو بونوتشي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p131",
+    "name": "بيبي",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p132",
+    "name": "ريكاردو كواريزما",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p133",
+    "name": "ناني",
+    "difficulty": "medium",
+    "tags": [
+      "world"
+    ]
+  },
+  {
+    "id": "p135",
+    "name": "دينيس بيركامب",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p136",
+    "name": "روبن فان بيرسي",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p137",
+    "name": "رود فان نيستلروي",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p138",
+    "name": "كلارنس سيدورف",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p139",
+    "name": "باتريك فييرا",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p140",
+    "name": "روي كين",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p141",
+    "name": "بول سكولز",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p142",
+    "name": "ريان غيغز",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p143",
+    "name": "غاري نيفيل",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p144",
+    "name": "ريو فيرديناند",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p145",
+    "name": "نيمانيا فيديتش",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p146",
+    "name": "جون تيري",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p147",
+    "name": "بيتر تشيك",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p148",
+    "name": "إدوين فان دير سار",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p149",
+    "name": "أوليفر كان",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p150",
+    "name": "ينس ليمان",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p151",
+    "name": "مايكل بالاك",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p152",
+    "name": "باستيان شفاينشتايغر",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p153",
+    "name": "فيليب لام",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p154",
+    "name": "ميروسلاف كلوزه",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p155",
+    "name": "لوكاس بودولسكي",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p156",
+    "name": "ماريو غوميز",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p157",
+    "name": "فرناندو هييرو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p158",
+    "name": "غوتي",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p159",
+    "name": "تشابي ألونسو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p160",
+    "name": "ميشيل سالغادو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p161",
+    "name": "ديكو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p162",
+    "name": "كارلوس تيفيز",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p163",
+    "name": "هرنان كريسبو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p164",
+    "name": "خافيير زانيتي",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p165",
+    "name": "إستيبان كامبياسو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p166",
+    "name": "والتر صامويل",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p167",
+    "name": "دييغو ميليتو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p168",
+    "name": "خافيير ماسكيرانو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p169",
+    "name": "غابرييل باتيستوتا",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p170",
+    "name": "أليساندرو ديل بييرو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p171",
+    "name": "باولو مالديني",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p172",
+    "name": "أليساندرو نيستا",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p173",
+    "name": "فابيو كانافارو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p174",
+    "name": "جينارو غاتوزو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p175",
+    "name": "فيليبو إنزاغي",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p176",
+    "name": "روبرتو باجيو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p177",
+    "name": "أندريه شيفتشينكو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p178",
+    "name": "مايكل أوين",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p179",
+    "name": "آلان شيرر",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p180",
+    "name": "ديفيد تريزيغيه",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p181",
+    "name": "نيكولا أنيلكا",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p182",
+    "name": "فلوران مالودا",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p183",
+    "name": "جاي جاي أوكوشا",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p184",
+    "name": "يايا توريه",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p185",
+    "name": "كولو توريه",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p186",
+    "name": "مايكل إيسيان",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p187",
+    "name": "فريدريك ليونغبرغ",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p188",
+    "name": "روبرت بيريس",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p189",
+    "name": "هينريك لارسون",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p190",
+    "name": "جورج ويا",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p191",
+    "name": "حسن صالح حميديتش",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p192",
+    "name": "ديان ستانكوفيتش",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p193",
+    "name": "جونينيو بيرنامبوكانو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p194",
+    "name": "زي روبرتو",
+    "difficulty": "medium",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p195",
+    "name": "أكرم عفيف",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p196",
+    "name": "المعز علي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p197",
+    "name": "حسن معتوق",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p198",
+    "name": "عدي الدباغ",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p199",
+    "name": "علي علوان",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p200",
+    "name": "يزن النعيمات",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p201",
+    "name": "حمزة الدردور",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p202",
+    "name": "أحمد هايل",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p203",
+    "name": "عبدالله ذيب",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p204",
+    "name": "عامر شفيع",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p205",
+    "name": "بدران الشقران",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p206",
+    "name": "أنس بني ياسين",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p207",
+    "name": "نور صبري",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p208",
+    "name": "نشأت أكرم",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p209",
+    "name": "يونس محمود",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p210",
+    "name": "عماد محمد",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p211",
+    "name": "بشار رسن",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p212",
+    "name": "أيمن حسين",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p213",
+    "name": "مهند علي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p214",
+    "name": "عمر خربين",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p215",
+    "name": "عمر السومة",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p216",
+    "name": "فراس الخطيب",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p217",
+    "name": "محمود المواس",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p218",
+    "name": "إسماعيل مطر",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p219",
+    "name": "خالد عيسى",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p220",
+    "name": "خليل غانم",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p221",
+    "name": "أحمد خليل",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p222",
+    "name": "فهد المولد",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p223",
+    "name": "محمد السهلاوي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p224",
+    "name": "نواف العابد",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p225",
+    "name": "سلمان الفرج",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p226",
+    "name": "محمد كنو",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p227",
+    "name": "نواف التمياط",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p228",
+    "name": "حسين عبد الغني",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p229",
+    "name": "محمد الدعيع",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p230",
+    "name": "يوسف الثنيان",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p231",
+    "name": "فهد الهريفي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p232",
+    "name": "بدر المطوع",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p233",
+    "name": "بشار عبدالله",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p234",
+    "name": "جاسم يعقوب",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p235",
+    "name": "محمد زيدان",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p236",
+    "name": "عمرو زكي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p237",
+    "name": "حسام حسن",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p238",
+    "name": "أحمد حسن",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p239",
+    "name": "حسام غالي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p240",
+    "name": "حسني عبد ربه",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p241",
+    "name": "عماد متعب",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p242",
+    "name": "محمد بركات",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p243",
+    "name": "محمود الخطيب",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p244",
+    "name": "شيكابالا",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p245",
+    "name": "رمضان صبحي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p246",
+    "name": "مصطفى محمد",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p247",
+    "name": "عمر مرموش",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p248",
+    "name": "محمد الشناوي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p249",
+    "name": "عصام الحضري",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p250",
+    "name": "إسلام سليماني",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p251",
+    "name": "ياسين براهيمي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p252",
+    "name": "سفيان فيغولي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p253",
+    "name": "يوسف بلايلي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p254",
+    "name": "إسماعيل بن ناصر",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p255",
+    "name": "رابح ماجر",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p256",
+    "name": "مصطفى حجي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p257",
+    "name": "يوسف حجي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p258",
+    "name": "نور الدين أمرابط",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p259",
+    "name": "سفيان أمرابط",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p260",
+    "name": "عادل تاعرابت",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p261",
+    "name": "مروان الشماخ",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p262",
+    "name": "عبد الرزاق حمدالله",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p263",
+    "name": "سفيان رحيمي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p264",
+    "name": "أيوب الكعبي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p265",
+    "name": "وهبي الخزري",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p266",
+    "name": "يوسف المساكني",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p267",
+    "name": "حنبعل المجبري",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p268",
+    "name": "علي معلول",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p269",
+    "name": "فرجاني ساسي",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p270",
+    "name": "طارق ذياب",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p271",
+    "name": "صابر خليفة",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p272",
+    "name": "زياد الجزيري",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p273",
+    "name": "أحمد كانو",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p274",
+    "name": "فوزي بشير",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p275",
+    "name": "هاشم صالح",
+    "difficulty": "medium",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p277",
+    "name": "فرانكو باريزي",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p278",
+    "name": "جوزيبي بيرغومي",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p279",
+    "name": "جيانلوكا زامبروتا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p280",
+    "name": "ماسيمو أمبروزيني",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p281",
+    "name": "ديميتريو ألبرتيني",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p282",
+    "name": "روي كوستا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p283",
+    "name": "باولو سوزا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p284",
+    "name": "غايزكا ميندييتا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p285",
+    "name": "خوان رومان ريكيلمي",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p286",
+    "name": "خوان سيباستيان فيرون",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p287",
+    "name": "بابلو أيمار",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p288",
+    "name": "آرييل أورتيغا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p289",
+    "name": "دييغو فورلان",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p290",
+    "name": "ألفارو ريكوبا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p291",
+    "name": "إيفان زامورانو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p292",
+    "name": "مارسيلو سالاس",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p293",
+    "name": "ديفيد سوازو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p294",
+    "name": "كلود ماكيليلي",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p295",
+    "name": "ديدييه ديشان",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p296",
+    "name": "إيمانويل بيتي",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p297",
+    "name": "ليليان تورام",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p298",
+    "name": "لوران بلان",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p299",
+    "name": "بيكسنتي ليزارازو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p300",
+    "name": "فنسنت كانديلا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p301",
+    "name": "غيورغي هاجي",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p302",
+    "name": "غوران بانديف",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p303",
+    "name": "دافور شوكر",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p304",
+    "name": "روبرت بروزينيكي",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p305",
+    "name": "سينيشا ميهايلوفيتش",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p306",
+    "name": "بافل نيدفيد",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p307",
+    "name": "توماش روزيتسكي",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p308",
+    "name": "يان كولر",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p309",
+    "name": "زيكو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p310",
+    "name": "سقراط",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p311",
+    "name": "ريفالدو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p312",
+    "name": "بيبيتو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p313",
+    "name": "روماريو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p314",
+    "name": "دونغا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p315",
+    "name": "كافو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p316",
+    "name": "ألدير",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p317",
+    "name": "رود خوليت",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p318",
+    "name": "ماركو فان باستن",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p319",
+    "name": "فرانك ريكارد",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p320",
+    "name": "رونالد كومان",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p321",
+    "name": "يوهان كرويف",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p322",
+    "name": "أوزيبيو",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p323",
+    "name": "ميشيل بلاتيني",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p324",
+    "name": "فرانز بيكنباور",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p325",
+    "name": "غيرد مولر",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p326",
+    "name": "إريك كانتونا",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p327",
+    "name": "جورج بست",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p328",
+    "name": "كيني دالغليش",
+    "difficulty": "hard",
+    "tags": [
+      "world",
+      "legends"
+    ]
+  },
+  {
+    "id": "p329",
+    "name": "رشيد الداودي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p330",
+    "name": "الطاهر أبو زيد",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p331",
+    "name": "هشام بوشروان",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p332",
+    "name": "صلاح الدين بصير",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p333",
+    "name": "عزيز بودربالة",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p334",
+    "name": "بادو الزاكي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p335",
+    "name": "نور الدين النيبت",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p336",
+    "name": "محمد التيمومي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p337",
+    "name": "جمال بلماضي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p338",
+    "name": "كريم زياني",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p339",
+    "name": "عنتر يحيى",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p340",
+    "name": "رفيق صايفي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p341",
+    "name": "مجيد بوقرة",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p342",
+    "name": "عبد المؤمن جابو",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p343",
+    "name": "سليم بن عاشور",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p344",
+    "name": "حاتم الطرابلسي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p345",
+    "name": "راضي الجعايدي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p346",
+    "name": "خالد بدرة",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p347",
+    "name": "قيس الغضبان",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p348",
+    "name": "زهير بخيت",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p349",
+    "name": "عدنان الطلياني",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p350",
+    "name": "حمود سلطان",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p351",
+    "name": "طلال يوسف",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p352",
+    "name": "حسين علي بيليه",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p353",
+    "name": "مؤيد الحداد",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p354",
+    "name": "عبدالله وبران",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p355",
+    "name": "جاسم الهويدي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p356",
+    "name": "إبراهيم خلفان",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p357",
+    "name": "منصور مفتاح",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p358",
+    "name": "محمود شلباية",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p359",
+    "name": "جمال أبو عابد",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p360",
+    "name": "خالد عوض",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p361",
+    "name": "حسن عبد الفتاح",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p362",
+    "name": "أحمد راضي",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p363",
+    "name": "حسين سعيد",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  },
+  {
+    "id": "p364",
+    "name": "عدنان درجال",
+    "difficulty": "hard",
+    "tags": [
+      "arab"
+    ]
+  }
+]

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-app-shell="kalma-w-bas">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#142b69">
+  <meta name="application-name" content="كلمة وبس">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="كلمة وبس">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="كلمة وبس: لعبة تخمين لاعبي كرة القدم للأصدقاء. فريقان، حكم، وتلميح من كلمة واحدة. العبوا على جهاز واحد.">
+  <meta property="og:title" content="كلمة وبس — مين اللاعب؟">
+  <meta property="og:description" content="جمّع أصحابك. اختاروا فريقين. وخلي كلمة واحدة تغيّر المباراة.">
+  <meta property="og:url" content="https://kalma-w-bas.laith-ziod.chatgpt.site">
+  <meta name="color-scheme" content="light">
+  <title>كلمة وبس — مين اللاعب؟</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/icon.svg">
+  <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
+  <link rel="apple-touch-icon" href="/assets/app-icon-180.png">
+  <link rel="preload" href="/assets/arabic.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/theme-94.css">
+  <link rel="stylesheet" href="/pwa.css">
+  <link rel="stylesheet" href="/photos.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">انتقل إلى اللعبة</a>
+  <header class="header">
+    <button class="brand" data-action="home" aria-label="كلمة وبس — الرئيسية"><img src="/assets/icon.svg" alt="" width="42" height="42"><span>كلمة <b>وبس</b><small>THE ONE-WORD CUP</small></span></button>
+    <nav class="header-nav" aria-label="القائمة"><span class="local-badge"><span></span> USA • 1994</span><button class="icon-btn" id="sound-button" data-action="sound" aria-label="إيقاف الصوت" aria-pressed="true"></button><button class="rules-button" data-action="rules"><span class="question-icon">؟</span><span>كيف نلعب؟</span></button></nav>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <section class="install-card" id="install-card" aria-labelledby="install-title">
+    <img src="/assets/app-icon-192.png" width="60" height="60" alt="">
+    <div class="install-copy"><span class="eyebrow">حماس المونديال… على جهازك</span><h2 id="install-title">اللعبة، بجيبك.</h2><p id="install-description">ثبّتها على الشاشة الرئيسية وافتحها كتطبيق مستقل.</p><small id="offline-status" role="status" aria-live="polite">جارٍ تجهيز الصور واللعبة بدون إنترنت…</small></div>
+    <button type="button" class="btn btn-dark" id="install-button">تثبيت التطبيق <span aria-hidden="true">↓</span></button>
+  </section>
+  <footer class="footer"><span>كلمة وبس <b dir="ltr">★ USA ’94 EDITION</b></span><span>فريقان · ٤ لاعبين · حكم واحد</span><a href="/photo-credits.html" class="footer-credits" target="_blank" rel="noopener">مصادر الصور</a></footer>
+  <div class="update-notice" id="update-notice" hidden role="status"><span>تحديث جديد جاهز للعبة.</span><button type="button" id="update-button">حفظ المباراة والتحديث</button></div>
+  <dialog id="install-help" aria-labelledby="install-help-title">
+    <div class="modal-header"><h2 id="install-help-title">ثبّت «كلمة وبس»</h2><button class="icon-btn" id="close-install-help" type="button" aria-label="إغلاق">×</button></div>
+    <div class="install-devices" role="group" aria-label="اختر نوع جهازك"><button type="button" id="install-device-ios" aria-pressed="false">آيفون / آيباد</button><button type="button" id="install-device-android" aria-pressed="false">أندرويد</button></div>
+    <p id="install-help-intro">اختَر نوع جهازك لعرض خطوات التثبيت.</p>
+    <ol class="install-steps" id="install-help-steps"></ol>
+    <p class="install-note" id="install-help-note">افتح اللعبة من أيقونتها وانتظر ظهور «جاهزة بدون إنترنت» قبل اللعب دون اتصال.</p>
+    <div class="modal-actions"><button type="button" class="btn btn-dark" id="copy-install-link">نسخ رابط اللعبة</button><button type="button" class="btn btn-outline" id="done-install-help">تمام</button></div><p id="install-help-feedback" role="status"></p>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="announcer" class="sr-only" aria-live="polite"></div>
+  <dialog id="modal"><div id="modal-content"></div></dialog>
+  <script type="module" src="/app.js"></script>
+  <script src="/pwa.js" defer></script>
+</body>
+</html>
