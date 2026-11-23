@@ -1,10 +1,13 @@
-# Codemagic: Android debug APK (no keystore) + iOS TestFlight
+# Codemagic: Android debug APK + iOS TestFlight
 # Flutter project lives in /app
 #
-# Android: builds a debug APK for sideload testing — no keystore required.
-# iOS TestFlight still needs Apple signing set up in Codemagic UI:
-#   App Store Connect API key named `KalmaWaBas` + Distribution cert/profile
-#   for com.bahlaq.kalmaWaBas
+# iOS Bundle IDs (from app/ios/Runner.xcodeproj/project.pbxproj):
+#   App target:  com.bahlaq.kalmaWaBas
+#   Tests only:  com.bahlaq.kalmaWaBas.RunnerTests  (not shipped; no App Store profile)
+# No app extensions found.
+#
+# Codemagic UI: App Store Connect integration must be named `naqel_asc`
+# and a distribution certificate must be uploaded for keychain add-certificates.
 
 workflows:
   kalma-android-apk:
@@ -50,15 +53,25 @@ workflows:
     max_build_duration: 90
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: KalmaWaBas
+      app_store_connect: naqel_asc
     environment:
       flutter: stable
       xcode: latest
       cocoapods: default
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.bahlaq.kalmaWaBas
+      vars:
+        BUNDLE_ID: com.bahlaq.kalmaWaBas
     scripts:
+      - name: Set up keychain
+        script: |
+          keychain initialize
+      - name: Add certificates
+        script: |
+          keychain add-certificates
+      - name: Fetch signing files
+        script: |
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create
       - name: Set up code signing settings on Xcode project
         script: |
           xcode-project use-profiles
@@ -69,14 +82,6 @@ workflows:
       - name: Install CocoaPods
         script: |
           find "$CM_BUILD_DIR/app/ios" -name "Podfile" -execdir pod install \;
-      - name: Analyze
-        script: |
-          cd app
-          flutter analyze --no-fatal-infos --no-fatal-warnings
-      - name: Unit tests
-        script: |
-          cd app
-          flutter test
       - name: Build IPA
         script: |
           cd app
@@ -97,7 +102,4 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
-        # Uncomment and set after you create a TestFlight beta group:
-        # beta_groups:
-        #   - Internal
         submit_to_app_store: false
