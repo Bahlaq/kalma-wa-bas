@@ -64,8 +64,6 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.bahlaq.kalmaWaBas
-      vars:
-        APP_STORE_APPLE_ID: "" # optional: numeric App Store Connect app id
     scripts:
       - name: Set up code signing settings on Xcode project
         script: |
