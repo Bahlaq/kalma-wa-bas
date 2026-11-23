@@ -541,10 +541,7 @@ class _MatchScreenState extends State<MatchScreen> {
           width: double.infinity,
           child: ElevatedButton(
             onPressed: () {
-              setState(() {
-                _phoneReady = false;
-                _trackedRevealStep = -1;
-              });
+              setState(() => _phoneReady = false);
               ctrl.continueMatch();
             },
             child: Text(
