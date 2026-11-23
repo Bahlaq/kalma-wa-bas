@@ -20,10 +20,8 @@ class _SetupScreenState extends State<SetupScreen> {
   late final TextEditingController _m01;
   late final TextEditingController _m10;
   late final TextEditingController _m11;
-  late final TextEditingController _custom;
   late int _seconds;
   late int _target;
-  late String _category;
   late String _difficulty;
 
   @override
@@ -36,11 +34,11 @@ class _SetupScreenState extends State<SetupScreen> {
     _m01 = TextEditingController(text: c.teams[0].members[1]);
     _m10 = TextEditingController(text: c.teams[1].members[0]);
     _m11 = TextEditingController(text: c.teams[1].members[1]);
-    _custom = TextEditingController(text: c.customNames);
-    _seconds = c.seconds;
-    _target = c.target;
-    _category = c.category;
-    _difficulty = c.difficulty;
+    _seconds = c.seconds == 0 ? 60 : c.seconds;
+    _target = [5, 7, 11].contains(c.target) ? c.target : 11;
+    _difficulty = ['easy', 'medium', 'hard'].contains(c.difficulty)
+        ? c.difficulty
+        : 'easy';
   }
 
   @override
@@ -51,7 +49,6 @@ class _SetupScreenState extends State<SetupScreen> {
     _m01.dispose();
     _m10.dispose();
     _m11.dispose();
-    _custom.dispose();
     super.dispose();
   }
 
@@ -60,23 +57,22 @@ class _SetupScreenState extends State<SetupScreen> {
           TeamConfig(
             name: _team0.text.trim().isEmpty ? 'الصقور' : _team0.text.trim(),
             members: [
-              _m00.text.trim().isEmpty ? 'اللاعب ١' : _m00.text.trim(),
-              _m01.text.trim().isEmpty ? 'اللاعب ٢' : _m01.text.trim(),
+              _m00.text.trim().isEmpty ? 'عمر' : _m00.text.trim(),
+              _m01.text.trim().isEmpty ? 'أحمد' : _m01.text.trim(),
             ],
           ),
           TeamConfig(
             name: _team1.text.trim().isEmpty ? 'النمور' : _team1.text.trim(),
             members: [
-              _m10.text.trim().isEmpty ? 'اللاعب ٣' : _m10.text.trim(),
-              _m11.text.trim().isEmpty ? 'اللاعب ٤' : _m11.text.trim(),
+              _m10.text.trim().isEmpty ? 'محمد' : _m10.text.trim(),
+              _m11.text.trim().isEmpty ? 'خالد' : _m11.text.trim(),
             ],
           ),
         ],
         seconds: _seconds,
         target: _target,
-        category: _category,
+        category: 'all',
         difficulty: _difficulty,
-        customNames: _custom.text,
       );
 
   void _sync() {
@@ -107,13 +103,13 @@ class _SetupScreenState extends State<SetupScreen> {
         ),
         const SizedBox(height: 6),
         const Text(
-          'مين نازل الملعب؟',
+          'سجّلوا الفريقين',
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
         ),
         const SizedBox(height: 6),
         const Text(
-          'سمّوا فريقكم، واختاروا شكل التحدّي. الحكم يمسك الجهاز.',
-          style: TextStyle(color: Usa94Colors.muted),
+          'فريقان، أربعة أسماء، مستوى واحد، ووقت الجولة. الحكم يمسك الجهاز.',
+          style: TextStyle(color: Usa94Colors.muted, height: 1.6),
         ),
         const SizedBox(height: 20),
         _teamCard(
@@ -132,7 +128,9 @@ class _SetupScreenState extends State<SetupScreen> {
           color: Usa94Colors.red,
         ),
         const SizedBox(height: 18),
-        _settingsCard(),
+        _levelCard(),
+        const SizedBox(height: 14),
+        _timeAndTargetCard(),
         const SizedBox(height: 14),
         Container(
           padding: const EdgeInsets.all(14),
@@ -154,7 +152,7 @@ class _SetupScreenState extends State<SetupScreen> {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  'جاهز $pool لاعب في المجموعة',
+                  '$pool لاعب جاهز في المستوى المختار',
                   style: const TextStyle(fontWeight: FontWeight.w700),
                 ),
               ),
@@ -169,12 +167,16 @@ class _SetupScreenState extends State<SetupScreen> {
           ),
         ],
         const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {
-            ctrl.updateSetup(_buildConfig());
-            ctrl.startNewMatch();
-          },
-          child: const Text('ابدأ التحدّي'),
+        SizedBox(
+          width: double.infinity,
+          height: 52,
+          child: ElevatedButton(
+            onPressed: () {
+              ctrl.updateSetup(_buildConfig());
+              ctrl.startNewMatch();
+            },
+            child: const Text('يلا نبدأ'),
+          ),
         ),
       ],
     );
@@ -212,19 +214,28 @@ class _SetupScreenState extends State<SetupScreen> {
           const SizedBox(height: 10),
           TextField(
             controller: teamCtrl,
-            decoration: const InputDecoration(labelText: 'اسم الفريق'),
+            decoration: InputDecoration(
+              labelText: 'اسم الفريق',
+              hintText: index == 0 ? 'مثال: الصقور' : 'مثال: النمور',
+            ),
             onChanged: (_) => _sync(),
           ),
           const SizedBox(height: 10),
           TextField(
             controller: m0,
-            decoration: const InputDecoration(labelText: 'اللاعب الأول'),
+            decoration: InputDecoration(
+              labelText: 'اللاعب الأول',
+              hintText: index == 0 ? 'عمر' : 'محمد',
+            ),
             onChanged: (_) => _sync(),
           ),
           const SizedBox(height: 10),
           TextField(
             controller: m1,
-            decoration: const InputDecoration(labelText: 'اللاعب الثاني'),
+            decoration: InputDecoration(
+              labelText: 'اللاعب الثاني',
+              hintText: index == 0 ? 'أحمد' : 'خالد',
+            ),
             onChanged: (_) => _sync(),
           ),
         ],
@@ -232,7 +243,7 @@ class _SetupScreenState extends State<SetupScreen> {
     );
   }
 
-  Widget _settingsCard() {
+  Widget _levelCard() {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -243,81 +254,117 @@ class _SetupScreenState extends State<SetupScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('إعدادات التحدّي', style: TextStyle(fontWeight: FontWeight.w800)),
-          const SizedBox(height: 12),
-          DropdownButtonFormField<int>(
-            initialValue: _seconds,
-            decoration: const InputDecoration(labelText: 'وقت الجولة'),
-            items: const [
-              DropdownMenuItem(value: 60, child: Text('60 ثانية')),
-              DropdownMenuItem(value: 90, child: Text('90 ثانية')),
-              DropdownMenuItem(value: 120, child: Text('120 ثانية')),
-              DropdownMenuItem(value: 0, child: Text('بدون مؤقّت')),
-            ],
-            onChanged: (v) {
-              if (v == null) return;
-              setState(() => _seconds = v);
-              _sync();
-            },
+          const Text(
+            'المستوى (٣ خيارات)',
+            style: TextStyle(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: 12),
-          DropdownButtonFormField<int>(
-            initialValue: _target,
-            decoration: const InputDecoration(labelText: 'هدف الفوز'),
-            items: const [
-              DropdownMenuItem(value: 3, child: Text('٣ نقاط')),
-              DropdownMenuItem(value: 5, child: Text('٥ نقاط')),
-              DropdownMenuItem(value: 7, child: Text('٧ نقاط')),
-              DropdownMenuItem(value: 10, child: Text('١٠ نقاط')),
-            ],
-            onChanged: (v) {
-              if (v == null) return;
-              setState(() => _target = v);
-              _sync();
-            },
-          ),
-          const SizedBox(height: 12),
-          DropdownButtonFormField<String>(
-            initialValue: _category,
-            decoration: const InputDecoration(labelText: 'المجموعة'),
-            items: categoryLabels.entries
-                .map(
-                  (e) => DropdownMenuItem(value: e.key, child: Text(e.value)),
-                )
-                .toList(),
-            onChanged: (v) {
-              if (v == null) return;
-              setState(() => _category = v);
-              _sync();
-            },
-          ),
-          if (_category != 'custom') ...[
-            const SizedBox(height: 12),
-            DropdownButtonFormField<String>(
-              initialValue: _difficulty,
-              decoration: const InputDecoration(labelText: 'الصعوبة'),
-              items: [
-                const DropdownMenuItem(value: 'all', child: Text('الكل')),
-                ...difficultyLabels.entries.map(
-                  (e) => DropdownMenuItem(value: e.key, child: Text(e.value)),
+          ...difficultyLabels.entries.map((e) {
+            final selected = _difficulty == e.key;
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: InkWell(
+                onTap: () {
+                  setState(() => _difficulty = e.key);
+                  _sync();
+                },
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 14,
+                  ),
+                  decoration: BoxDecoration(
+                    color: selected ? Usa94Colors.royal : Usa94Colors.paper,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Usa94Colors.ink),
+                    boxShadow: selected
+                        ? const [
+                            BoxShadow(
+                              color: Usa94Colors.ink,
+                              offset: Offset(2, 2),
+                            ),
+                          ]
+                        : null,
+                  ),
+                  child: Text(
+                    e.value,
+                    style: TextStyle(
+                      color: selected ? Usa94Colors.paper : Usa94Colors.ink,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
                 ),
-              ],
-              onChanged: (v) {
-                if (v == null) return;
-                setState(() => _difficulty = v);
-                _sync();
-              },
-            ),
-          ],
-          const SizedBox(height: 12),
-          TextField(
-            controller: _custom,
-            minLines: 3,
-            maxLines: 5,
-            decoration: const InputDecoration(
-              labelText: 'أسماء إضافية (سطر لكل اسم)',
-            ),
-            onChanged: (_) => _sync(),
+              ),
+            );
+          }),
+        ],
+      ),
+    );
+  }
+
+  Widget _timeAndTargetCard() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Usa94Colors.paper,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Usa94Colors.ink),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'وقت الجولة',
+            style: TextStyle(fontWeight: FontWeight.w800),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [30, 45, 60, 90].map((s) {
+              final selected = _seconds == s;
+              return ChoiceChip(
+                label: Text('$s ث'),
+                selected: selected,
+                onSelected: (_) {
+                  setState(() => _seconds = s);
+                  _sync();
+                },
+                selectedColor: Usa94Colors.gold,
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Usa94Colors.ink,
+                ),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: 18),
+          const Text(
+            'الفوز (تجاوز ١٠ = ١١ نقطة)',
+            style: TextStyle(fontWeight: FontWeight.w800),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [5, 7, 11].map((t) {
+              final selected = _target == t;
+              return ChoiceChip(
+                label: Text(t == 11 ? 'أول من يتجاوز ١٠' : 'أول من يوصل $t'),
+                selected: selected,
+                onSelected: (_) {
+                  setState(() => _target = t);
+                  _sync();
+                },
+                selectedColor: Usa94Colors.gold,
+                labelStyle: const TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Usa94Colors.ink,
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),

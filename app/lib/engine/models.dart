@@ -98,13 +98,13 @@ class MatchConfig {
 
   static MatchConfig defaults() => const MatchConfig(
         teams: [
-          TeamConfig(name: 'الصقور', members: ['اللاعب ١', 'اللاعب ٢']),
-          TeamConfig(name: 'النمور', members: ['اللاعب ٣', 'اللاعب ٤']),
+          TeamConfig(name: 'الصقور', members: ['عمر', 'أحمد']),
+          TeamConfig(name: 'النمور', members: ['محمد', 'خالد']),
         ],
-        seconds: 90,
-        target: 5,
+        seconds: 60,
+        target: 11, // أول من يتجاوز ١٠ يفوز
         category: 'all',
-        difficulty: 'all',
+        difficulty: 'easy',
       );
 }
 

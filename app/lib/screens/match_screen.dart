@@ -7,6 +7,7 @@ import '../engine/engine.dart' as E;
 import '../engine/models.dart';
 import '../state/match_controller.dart';
 import '../theme/usa94_theme.dart';
+import '../widgets/pass_phone_banner.dart';
 import '../widgets/scoreboard.dart';
 import '../widgets/secret_card.dart';
 
@@ -20,6 +21,9 @@ class MatchScreen extends StatefulWidget {
 class _MatchScreenState extends State<MatchScreen> {
   final _hintCtrl = TextEditingController();
   String? _hintError;
+
+  /// After handoff card; before/during secret hold-to-reveal.
+  bool _phoneReady = false;
 
   @override
   void dispose() {
@@ -68,7 +72,17 @@ class _MatchScreenState extends State<MatchScreen> {
         ),
         if (match.phase != 'finished') ...[
           Scoreboard(match: match),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
+          Text(
+            'الفوز بتجاوز ١٠ نقاط (أول من يوصل ${match.config.target})',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Usa94Colors.muted,
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 12),
         ],
         switch (match.phase) {
           'reveal' => _reveal(match, ctrl),
@@ -86,32 +100,62 @@ class _MatchScreenState extends State<MatchScreen> {
     final step = match.current!.revealStep;
     final clue = E.cluePerson(match, step);
     final guess = E.guessPerson(match, step);
+    final team = match.config.teams[step];
+    final seen = match.current!.seen[step];
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            _pill('١ كشف الفريق الأول', step == 0, step > 0),
+            _pill('١ ${E.cluePerson(match, 0)}', step == 0, step > 0),
             const SizedBox(width: 8),
-            _pill('٢ كشف الفريق الثاني', step == 1, false),
+            _pill('٢ ${E.cluePerson(match, 1)}', step == 1, false),
           ],
         ),
         const SizedBox(height: 16),
-        Text(
-          'الجهاز مع $clue',
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          'من فريق ${match.config.teams[step].name}. خَلّي زميلك $guess يبعد عينه.',
-          style: const TextStyle(color: Usa94Colors.muted, height: 1.6),
-        ),
-        const SizedBox(height: 18),
-        SecretCard(
-          player: match.current!.player,
-          onHeld: ctrl.markSeen,
-          onReleased: ctrl.acknowledge,
-        ),
+        if (!_phoneReady)
+          PassPhoneBanner(
+            holderName: clue,
+            teamName: team.name,
+            guesserName: guess,
+            stepLabel: step == 0 ? 'كشف ١ من ٢' : 'كشف ٢ من ٢',
+            onReady: () => setState(() => _phoneReady = true),
+          )
+        else ...[
+          Text(
+            'يا $clue — اضغط مطوّلًا لتشوف اللاعب',
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'بعد ما تشوف، افلِت ثم اضغط التالي. خلي $guess بعيد.',
+            style: const TextStyle(color: Usa94Colors.muted, height: 1.6),
+          ),
+          const SizedBox(height: 16),
+          SecretCard(
+            player: match.current!.player,
+            onHeld: ctrl.markSeen,
+            onReleased: () {},
+          ),
+          if (seen) ...[
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() => _phoneReady = false);
+                  ctrl.acknowledge();
+                },
+                child: Text(
+                  step == 0
+                      ? 'التالي — مرّر التلفون'
+                      : 'التالي — الحكم يمسك الجهاز',
+                ),
+              ),
+            ),
+          ],
+        ],
       ],
     );
   }
@@ -129,31 +173,48 @@ class _MatchScreenState extends State<MatchScreen> {
         decoration: BoxDecoration(
           color: bg,
           borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: active ? Usa94Colors.ink : const Color(0xFFC4CCDC)),
+          border: Border.all(
+            color: active ? Usa94Colors.ink : const Color(0xFFC4CCDC),
+          ),
         ),
         child: Text(
           label,
           textAlign: TextAlign.center,
-          style: TextStyle(color: fg, fontWeight: FontWeight.w700, fontSize: 12),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: fg,
+            fontWeight: FontWeight.w700,
+            fontSize: 12,
+          ),
         ),
       ),
     );
   }
 
   Widget _ready(MatchState match, MatchController ctrl) {
+    final starter = match.config.teams[match.current!.turn].name;
     return Column(
       children: [
-        const Icon(Icons.check_circle, color: Usa94Colors.royal, size: 48),
+        const Icon(Icons.sports, color: Usa94Colors.royal, size: 48),
         const SizedBox(height: 12),
+        const Text(
+          'السر صار مع الاثنين',
+          style: TextStyle(
+            color: Usa94Colors.red,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        const SizedBox(height: 6),
         const Text(
           'يا حكم… صفّر!',
           style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
         ),
         const SizedBox(height: 8),
         const Text(
-          'الجهاز الآن مع الحكم. الصور والأسماء مخبّأة والكل جاهز.',
+          'الجهاز مع الحكم. الأسماء مخبّأة. الفريقان يتناوبان كلمة بكلمة.',
           textAlign: TextAlign.center,
-          style: TextStyle(color: Usa94Colors.muted),
+          style: TextStyle(color: Usa94Colors.muted, height: 1.6),
         ),
         const SizedBox(height: 18),
         ...List.generate(2, (i) {
@@ -164,42 +225,40 @@ class _MatchScreenState extends State<MatchScreen> {
               color: i == 0 ? const Color(0xFFE9EDFB) : const Color(0xFFF9E9E6),
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: i == 0 ? const Color(0xFFAABDE9) : const Color(0xFFE8B7BA),
+                color:
+                    i == 0 ? const Color(0xFFAABDE9) : const Color(0xFFE8B7BA),
               ),
             ),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        match.config.teams[i].name,
-                        style: TextStyle(
-                          color: i == 0 ? Usa94Colors.royal : Usa94Colors.red,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                      Text('${E.cluePerson(match, i)} يعطي كلمة'),
-                      Text('${E.guessPerson(match, i)} يخمّن'),
-                    ],
+                Text(
+                  match.config.teams[i].name,
+                  style: TextStyle(
+                    color: i == 0 ? Usa94Colors.royal : Usa94Colors.red,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
+                const SizedBox(height: 4),
+                Text('${E.cluePerson(match, i)} → يعطي التلميح'),
+                Text('${E.guessPerson(match, i)} → يحزر'),
               ],
             ),
           );
         }),
-        const SizedBox(height: 8),
         Text(
           match.config.seconds == 0
-              ? 'بدون مؤقّت · ${match.config.teams[match.current!.turn].name} يبدأ'
-              : '${match.config.seconds} ثانية · ${match.config.teams[match.current!.turn].name} يبدأ',
+              ? 'بدون مؤقّت · $starter يبدأ'
+              : '${match.config.seconds} ثانية · $starter يبدأ',
           style: const TextStyle(fontWeight: FontWeight.w700),
         ),
         const SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: ctrl.startRound,
-          child: const Text('ابدأ الجولة'),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: ctrl.startRound,
+            child: const Text('ابدأ الجولة'),
+          ),
         ),
       ],
     );
@@ -216,43 +275,51 @@ class _MatchScreenState extends State<MatchScreen> {
             final s = total % 60;
             return '${m.toString().padLeft(2, '0')}:${s.toString().padLeft(2, '0')}';
           }();
+    final teamColor = c.turn == 0 ? Usa94Colors.royal : Usa94Colors.red;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                c.paused ? 'الجولة متوقّفة' : 'كلمة منك. تخمينة من زميلك.',
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Usa94Colors.paper,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Usa94Colors.ink),
+          ),
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: ctrl.togglePause,
+                icon: Icon(c.paused ? Icons.play_arrow : Icons.pause),
               ),
-            ),
-            IconButton(
-              onPressed: ctrl.togglePause,
-              icon: Icon(c.paused ? Icons.play_arrow : Icons.pause),
-            ),
-            Text(
-              timeLabel,
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.w900,
-                fontStyle: FontStyle.italic,
-                color: (left != null && left <= 15)
-                    ? Usa94Colors.red
-                    : Usa94Colors.ink,
+              Expanded(
+                child: Text(
+                  c.paused ? 'متوقّفة' : 'الوقت يمشي',
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
               ),
-            ),
-          ],
+              Text(
+                timeLabel,
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w900,
+                  fontStyle: FontStyle.italic,
+                  color: (left != null && left <= 15)
+                      ? Usa94Colors.red
+                      : Usa94Colors.ink,
+                ),
+              ),
+            ],
+          ),
         ),
+        const SizedBox(height: 14),
         if (c.paused)
           Container(
-            width: double.infinity,
-            margin: const EdgeInsets.only(top: 12),
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Usa94Colors.royal, style: BorderStyle.solid),
+              border: Border.all(color: Usa94Colors.royal),
             ),
             child: Column(
               children: [
@@ -260,7 +327,7 @@ class _MatchScreenState extends State<MatchScreen> {
                   'خذوا نفس…',
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 12),
                 ElevatedButton(
                   onPressed: ctrl.togglePause,
                   child: const Text('متابعة الجولة'),
@@ -269,65 +336,73 @@ class _MatchScreenState extends State<MatchScreen> {
             ),
           )
         else ...[
-          const SizedBox(height: 12),
           Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(18),
             decoration: BoxDecoration(
               color: c.turn == 0
                   ? const Color(0xFFE7ECFB)
                   : const Color(0xFFF9E8E5),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(12),
               border: Border(
-                top: BorderSide(
-                  color: c.turn == 0 ? Usa94Colors.royal : Usa94Colors.red,
-                  width: 4,
-                ),
+                top: BorderSide(color: teamColor, width: 5),
                 left: const BorderSide(color: Usa94Colors.ink),
                 right: const BorderSide(color: Usa94Colors.ink),
                 bottom: const BorderSide(color: Usa94Colors.ink),
               ),
+              boxShadow: const [
+                BoxShadow(color: Color(0xFFCAD3EC), offset: Offset(4, 4)),
+              ],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'دور ${match.config.teams[c.turn].name}',
+                  'دور فريق ${match.config.teams[c.turn].name}',
                   style: TextStyle(
-                    color: c.turn == 0 ? Usa94Colors.royal : Usa94Colors.red,
-                    fontWeight: FontWeight.w800,
+                    color: teamColor,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 10),
                 Text(
                   '${E.cluePerson(match, c.turn)} يقول كلمة واحدة',
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-                Text('${E.guessPerson(match, c.turn)} يخمّن'),
-                const SizedBox(height: 12),
+                Text(
+                  '${E.guessPerson(match, c.turn)} يحزر اللاعب',
+                  style: const TextStyle(color: Usa94Colors.muted),
+                ),
+                const SizedBox(height: 14),
                 TextField(
                   controller: _hintCtrl,
                   decoration: InputDecoration(
-                    labelText: 'كلمة اختيارية للسجل',
+                    labelText: 'سجّل الكلمة (اختياري) ثم بدّل الدور',
                     errorText: _hintError,
                   ),
                 ),
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    final err = ctrl.addHint(_hintCtrl.text);
-                    setState(() {
-                      _hintError = err;
-                      if (err == null) _hintCtrl.clear();
-                    });
-                  },
-                  child: const Text('تسجيل الكلمة وبدّل الدور'),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      final err = ctrl.addHint(_hintCtrl.text);
+                      setState(() {
+                        _hintError = err;
+                        if (err == null) _hintCtrl.clear();
+                      });
+                    },
+                    child: const Text('بدّل الدور للفريق الثاني'),
+                  ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 14),
-          if (c.hints.isNotEmpty)
+          if (c.hints.isNotEmpty) ...[
+            const SizedBox(height: 12),
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -342,34 +417,44 @@ class _MatchScreenState extends State<MatchScreen> {
                   )
                   .toList(),
             ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Usa94Colors.royal,
-                  ),
-                  onPressed: () => ctrl.award(0),
-                  child: Text('نقطة لـ ${match.config.teams[0].name}'),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Usa94Colors.red,
-                  ),
-                  onPressed: () => ctrl.award(1),
-                  child: Text('نقطة لـ ${match.config.teams[1].name}'),
-                ),
-              ),
-            ],
+          ],
+          const SizedBox(height: 18),
+          const Text(
+            'مين حزر؟',
+            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
           ),
           const SizedBox(height: 10),
+          SizedBox(
+            height: 56,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Usa94Colors.royal,
+              ),
+              onPressed: () => ctrl.award(0),
+              child: Text(
+                'نقطة لـ ${match.config.teams[0].name}',
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 56,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Usa94Colors.red,
+              ),
+              onPressed: () => ctrl.award(1),
+              child: Text(
+                'نقطة لـ ${match.config.teams[1].name}',
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
           OutlinedButton(
             onPressed: () => _confirmSkip(context, ctrl),
-            child: const Text('تخطّي الجولة'),
+            child: const Text('تخطّي الجولة (بدون نقطة)'),
           ),
         ],
       ],
@@ -394,21 +479,24 @@ class _MatchScreenState extends State<MatchScreen> {
         const SizedBox(height: 10),
         Text(
           targetHit
-              ? 'وصلتم لخط النهاية'
+              ? 'تجاوزوا ١٠… خلصت المباراة!'
               : won
                   ? 'قولوا جوووول!'
                   : outcome.reason == 'timeout'
-                      ? 'صافرة النهاية'
-                      : 'نحاول باللي بعدها',
-          style: const TextStyle(color: Usa94Colors.red, fontWeight: FontWeight.w700),
+                      ? 'خلص الوقت'
+                      : 'بدون نقاط هالجولة',
+          style: const TextStyle(
+            color: Usa94Colors.red,
+            fontWeight: FontWeight.w700,
+          ),
         ),
         const SizedBox(height: 6),
         Text(
           won
               ? 'نقطة لـ ${match.config.teams[outcome.winner!].name}'
               : outcome.reason == 'timeout'
-                  ? 'خلص الوقت!'
-                  : 'الجولة مرّت',
+                  ? 'صفّر الجولة الجاية'
+                  : 'نغيّر اللاعب ونكمّل',
           style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
           textAlign: TextAlign.center,
         ),
@@ -439,16 +527,30 @@ class _MatchScreenState extends State<MatchScreen> {
               const SizedBox(height: 10),
               Text(
                 match.current!.player.name,
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900),
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
               Text(difficulty),
             ],
           ),
         ),
         const SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: ctrl.continueMatch,
-          child: Text(targetHit ? 'عرض النتيجة' : 'الجولة التالية'),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                _phoneReady = false;
+                _trackedRevealStep = -1;
+              });
+              ctrl.continueMatch();
+            },
+            child: Text(
+              targetHit ? 'عرض الأبطال' : 'لاعب جديد — الجولة التالية',
+            ),
+          ),
         ),
         if (won)
           TextButton(
@@ -466,7 +568,7 @@ class _MatchScreenState extends State<MatchScreen> {
     final title = tie
         ? 'تعادل… بدها إعادة!'
         : match.endReason == 'target'
-            ? '${match.config.teams[winner!].name} أبطال الملعب!'
+            ? 'فريق ${match.config.teams[winner!].name} تجاوز ١٠ — فاز!'
             : '${match.config.teams[winner!].name} في الصدارة';
 
     return Column(
@@ -476,26 +578,29 @@ class _MatchScreenState extends State<MatchScreen> {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
+          style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w900),
         ),
         const SizedBox(height: 16),
         Text(
-          '${scores[0]} : ${scores[1]}',
+          '${match.config.teams[0].name}  ${scores[0]} — ${scores[1]}  ${match.config.teams[1].name}',
+          textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 48,
-            fontWeight: FontWeight.w900,
-            fontStyle: FontStyle.italic,
+            fontSize: 22,
+            fontWeight: FontWeight.w800,
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Text('${match.history.length} جولات'),
         const SizedBox(height: 20),
-        ElevatedButton(
-          onPressed: () {
-            ctrl.clearFinishedAndHome();
-            ctrl.goSetup();
-          },
-          child: const Text('مباراة جديدة'),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              ctrl.clearFinishedAndHome();
+              ctrl.goSetup();
+            },
+            child: const Text('مباراة جديدة'),
+          ),
         ),
         TextButton(
           onPressed: ctrl.clearFinishedAndHome,

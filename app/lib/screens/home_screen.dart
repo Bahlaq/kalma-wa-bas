@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         const Text(
-          'تعرف اللاعب من تلميح؟ جمّع أصحابك، كوّنوا فريقين، وخلّوا الحكم يدير الحماس. كل دور كلمة… والباقي على شطارتكم.',
+          'فريقان × شخصان. واحد يشوف اللاعب ويعطي تلميح، والثاني يحزر. تتناوبون لحد ما أحد يحزر — وأول من يتجاوز ١٠ يفوز.',
           style: TextStyle(
             color: Color(0xFF5E6A83),
             height: 1.9,
@@ -56,15 +56,18 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 28),
-        ElevatedButton(
-          onPressed: () {
-            if (active) {
-              ctrl.resumeMatch();
-            } else {
-              ctrl.goSetup();
-            }
-          },
-          child: Text(active ? 'كمّلوا المباراة' : 'يلا نلعب'),
+        SizedBox(
+          height: 52,
+          child: ElevatedButton(
+            onPressed: () {
+              if (active) {
+                ctrl.resumeMatch();
+              } else {
+                ctrl.goSetup();
+              }
+            },
+            child: Text(active ? 'كمّلوا المباراة' : 'يلا نلعب'),
+          ),
         ),
         if (active) ...[
           const SizedBox(height: 12),
@@ -104,55 +107,52 @@ class HomeScreen extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.only(top: 16),
             child: Text(
-              'جهاز واحد.\nوالكل بالملعب.',
-              style: TextStyle(color: Color(0xFF7D6B60)),
+              'جهاز واحد.\nمرّر التلفون بالاسم.',
+              style: TextStyle(color: Color(0xFF7D6B60), height: 1.5),
             ),
           ),
-        const SizedBox(height: 32),
-        Container(
-          padding: const EdgeInsets.all(18),
-          decoration: BoxDecoration(
-            color: Usa94Colors.royal,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Usa94Colors.ink, width: 2),
-            boxShadow: const [
-              BoxShadow(color: Usa94Colors.ink, offset: Offset(6, 6)),
-            ],
-          ),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'USA • 1994',
-                style: TextStyle(
-                  color: Usa94Colors.gold,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 1.5,
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'THE ONE-WORD CUP',
-                style: TextStyle(
-                  color: Usa94Colors.paper,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                'فريقان · ٤ لاعبين · حكم واحد',
-                style: TextStyle(color: Color(0xFFD0DAF9)),
-              ),
-            ],
-          ),
-        ),
         const SizedBox(height: 28),
+        _howCard(),
+        const SizedBox(height: 20),
         OutlinedButton(
           onPressed: () => _showRules(context),
           child: const Text('كيف نلعب؟'),
         ),
       ],
+    );
+  }
+
+  Widget _howCard() {
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: Usa94Colors.paper,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Usa94Colors.ink, width: 2),
+        boxShadow: const [
+          BoxShadow(color: Usa94Colors.ink, offset: Offset(5, 5)),
+        ],
+      ),
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'بسرعة',
+            style: TextStyle(
+              color: Usa94Colors.red,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          SizedBox(height: 10),
+          Text('١) سجّلوا فريقين وأربعة أسماء'),
+          SizedBox(height: 6),
+          Text('٢) مرّروا التلفون للي بيشوف اللاعب'),
+          SizedBox(height: 6),
+          Text('٣) كلمة… تخمينة… وتناوبوا'),
+          SizedBox(height: 6),
+          Text('٤) أول فريق يتجاوز ١٠ يفوز'),
+        ],
+      ),
     );
   }
 
@@ -165,18 +165,20 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('١) فريقين وحكم — كل فريق شخصين، الحكم يمسك الجهاز.'),
-              SizedBox(height: 10),
               Text(
-                '٢) نفس اللاعب سرّ واحد — شخص من كل فريق يكشف الصورة بالضغط المطوّل.',
+                '١) فريقان، كل فريق شخصين. الحكم يمسك جهاز واحد.',
               ),
               SizedBox(height: 10),
               Text(
-                '٣) كلمة واحدة كل دور — المُلمّح يقول كلمة وزميله يخمّن.',
+                '٢) التطبيق يطلب تمرير التلفون بالاسم. كل معطي تلميح يضغط مطوّلًا ليشوف اللاعب، ثم التالي.',
               ),
               SizedBox(height: 10),
               Text(
-                '٤) أول إجابة صح تكسب — الحكم يسجّل النقطة للفريق الأسرع.',
+                '٣) الفريقان يتناوبان: كلمة واحدة من المعطي، وتخمين من زميله.',
+              ),
+              SizedBox(height: 10),
+              Text(
+                '٤) اللي يحزر أول — الحكم يضغط اسم فريقه. أول من يتجاوز ١٠ نقاط يفوز. كل جولة لاعب كروي جديد.',
               ),
             ],
           ),
