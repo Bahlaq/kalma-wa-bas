@@ -17,10 +17,10 @@ flutter run
 
 | Workflow | الناتج |
 |---|---|
-| `kalma-android-apk` | APK أندرويد موقّع |
+| `kalma-android-apk` | APK debug للتثبيت على الجوال (بدون keystore) |
 | `kalma-ios-testflight` | IPA + رفع لـ TestFlight |
 
-**أندرويد:** ارفع keystore في Codemagic باسم المرجع `kalma_keystore`.  
+**أندرويد:** لا يحتاج keystore حالياً — حمّل الـ APK من Artifacts وثبّته على الجوال.  
 **iOS:** أضف مفتاح App Store Connect باسم التكامل `KalmaWaBas`، وشهادة Distribution + provisioning لـ `com.bahlaq.kalmaWaBas`، وأنشئ التطبيق في App Store Connect قبل أول رفع.
 
 ## الهيكل

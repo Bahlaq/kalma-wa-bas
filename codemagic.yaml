@@ -1,11 +1,10 @@
-# Codemagic: Android APK + iOS TestFlight
+# Codemagic: Android debug APK (no keystore) + iOS TestFlight
 # Flutter project lives in /app
 #
-# Setup once in Codemagic UI:
-# 1) Android: upload a keystore and name the reference `kalma_keystore`
-# 2) iOS: add App Store Connect API key; name the integration `KalmaWaBas`
-#    then add Apple Distribution cert + App Store profile for com.bahlaq.kalmaWaBas
-# 3) Create the app record in App Store Connect before first TestFlight upload
+# Android: builds a debug APK for sideload testing — no keystore required.
+# iOS TestFlight still needs Apple signing set up in Codemagic UI:
+#   App Store Connect API key named `KalmaWaBas` + Distribution cert/profile
+#   for com.bahlaq.kalmaWaBas
 
 workflows:
   kalma-android-apk:
@@ -14,8 +13,6 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       flutter: stable
-      android_signing:
-        - kalma_keystore
       vars:
         PACKAGE_NAME: "com.bahlaq.kalma_wa_bas"
     scripts:
@@ -34,15 +31,12 @@ workflows:
         script: |
           cd app
           flutter test
-      - name: Build release APK
+      - name: Build debug APK
         script: |
           cd app
-          flutter build apk --release \
-            --build-name=1.0.$BUILD_NUMBER \
-            --build-number=$BUILD_NUMBER
+          flutter build apk --debug
     artifacts:
       - app/build/app/outputs/**/*.apk
-      - app/build/app/outputs/**/mapping.txt
     publishing:
       email:
         recipients:
