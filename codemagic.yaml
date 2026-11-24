@@ -1,6 +1,5 @@
 # Codemagic: Android APK + AAB + iOS TestFlight
 # Flutter project lives in /app
-# Signing matches Bahlaq/naqel-driver (naqel_asc + CERTIFICATE_PRIVATE_KEY)
 
 workflows:
   android_apk:
@@ -17,37 +16,39 @@ workflows:
       - name: Set up local.properties
         script: |
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/app/android/local.properties"
-      - name: Set up Android keystore
+      - name: Set up Android keystore (optional for APK)
         script: |
           set -e
-          # Kalma gradle.kts reads CM_KEYSTORE_PATH directly when CI=true.
-          # Also write key.properties for consistency if using base64 CM_KEYSTORE.
           if [ -n "${CM_KEYSTORE_PATH:-}" ]; then
-            echo "Using Codemagic CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH"
+            echo "HAS_RELEASE_KEYSTORE=1" >> "$CM_ENV"
+            echo "Using CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH"
           elif [ -n "${CM_KEYSTORE:-}" ]; then
             echo "$CM_KEYSTORE" | base64 --decode > "$CM_BUILD_DIR/app/android/keystore.jks"
-            export CM_KEYSTORE_PATH="$CM_BUILD_DIR/app/android/keystore.jks"
-            echo "Decoded CM_KEYSTORE to $CM_KEYSTORE_PATH"
-            # Persist for subsequent scripts in this build
-            echo "CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH" >> "$CM_ENV"
+            echo "CM_KEYSTORE_PATH=$CM_BUILD_DIR/app/android/keystore.jks" >> "$CM_ENV"
+            echo "HAS_RELEASE_KEYSTORE=1" >> "$CM_ENV"
+            echo "Decoded CM_KEYSTORE"
           else
-            echo "WARNING: No Android keystore configured (will fall back to debug signing)."
-            echo "Set Codemagic group android_credentials:"
-            echo "  CM_KEYSTORE (base64), CM_KEYSTORE_PASSWORD, CM_KEY_ALIAS, CM_KEY_PASSWORD"
+            echo "HAS_RELEASE_KEYSTORE=0" >> "$CM_ENV"
+            echo "No android_credentials keystore — will build debug APK"
           fi
       - name: Get Flutter packages
         script: |
           cd app
           flutter pub get
-      - name: Build release APK
+      - name: Build APK
         script: |
           set -e
           cd app
           NEW_BUILD=$((PREVIOUS_STORE_BUILD + BUILD_NUMBER))
-          echo "Building APK with build-number=$NEW_BUILD"
-          flutter build apk --release \
-            --build-name=1.0.0 \
-            --build-number="$NEW_BUILD"
+          if [ "${HAS_RELEASE_KEYSTORE:-0}" = "1" ]; then
+            echo "Building release APK build-number=$NEW_BUILD"
+            flutter build apk --release \
+              --build-name=1.0.0 \
+              --build-number="$NEW_BUILD"
+          else
+            echo "Building debug APK (no keystore)"
+            flutter build apk --debug
+          fi
     artifacts:
       - app/build/app/outputs/flutter-apk/*.apk
     publishing:
@@ -76,14 +77,14 @@ workflows:
         script: |
           set -e
           if [ -n "${CM_KEYSTORE_PATH:-}" ]; then
-            echo "Using Codemagic CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH"
+            echo "Using CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH"
           elif [ -n "${CM_KEYSTORE:-}" ]; then
             echo "$CM_KEYSTORE" | base64 --decode > "$CM_BUILD_DIR/app/android/keystore.jks"
             echo "CM_KEYSTORE_PATH=$CM_BUILD_DIR/app/android/keystore.jks" >> "$CM_ENV"
             echo "Decoded CM_KEYSTORE"
           else
             echo "Missing Android keystore. AAB requires release signing."
-            echo "Configure Codemagic group android_credentials with:"
+            echo "Codemagic → Environment variables → group android_credentials:"
             echo "  CM_KEYSTORE (base64), CM_KEYSTORE_PASSWORD, CM_KEY_ALIAS, CM_KEY_PASSWORD"
             exit 1
           fi
@@ -128,16 +129,17 @@ workflows:
     scripts:
       - name: Set up keychain
         script: keychain initialize
-      - name: Fetch signing files with shared Distribution private key
+      - name: Fetch signing files
         script: |
           set -e
           mkdir -p /tmp/certs "$CM_BUILD_DIR/app/build/ios/ipa"
-          if [ -z "${CERTIFICATE_PRIVATE_KEY:-}" ]; then
-            echo "Missing CERTIFICATE_PRIVATE_KEY in Codemagic group 'code_signing'."
-            echo "Use the private key of an EXISTING Apple Distribution certificate."
-            exit 1
+          if [ -n "${CERTIFICATE_PRIVATE_KEY:-}" ]; then
+            echo "Using CERTIFICATE_PRIVATE_KEY from code_signing group"
+            printf '%s\n' "$CERTIFICATE_PRIVATE_KEY" > /tmp/cert_key.pem
+          else
+            echo "CERTIFICATE_PRIVATE_KEY not set — generating temporary key (openssl genrsa)"
+            openssl genrsa -out /tmp/cert_key.pem 2048
           fi
-          printf '%s\n' "$CERTIFICATE_PRIVATE_KEY" > /tmp/cert_key.pem
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create \
