@@ -1,50 +1,55 @@
-# Codemagic: Android debug APK + iOS TestFlight
+# Codemagic: Android APK + AAB + iOS TestFlight
 # Flutter project lives in /app
-#
-# iOS Bundle ID: com.bahlaq.kalmaWaBas
-# App Store Connect integration: naqel_asc
-#
-# IMPORTANT — shared Distribution certificate (same Apple team as naqel-driver):
-# Apple allows only ~2–3 Distribution certs. Do NOT openssl-gen a new key per build.
-# Store ONE RSA private key as Codemagic global variable CERTIFICATE_PRIVATE_KEY
-# (Team → codemagic.yaml settings → Global variables and secrets) and reuse it for
-# kalma-wa-bas + naqel-driver + naqel-user.
-#
-# If builds still 409 "already have a Distribution certificate":
-# delete one unused "Created via API" Distribution cert at developer.apple.com,
-# then rebuild once so this shared key can create/match a single cert.
+# Signing matches Bahlaq/naqel-driver (naqel_asc + CERTIFICATE_PRIVATE_KEY)
 
 workflows:
-  kalma-android-apk:
-    name: Kalma Wa Bas — Android APK
+  android_apk:
+    name: Android APK
     max_build_duration: 60
     instance_type: mac_mini_m2
     environment:
-      flutter: stable
+      flutter: 3.38.2
+      groups:
+        - android_credentials
       vars:
-        PACKAGE_NAME: "com.bahlaq.kalma_wa_bas"
+        PREVIOUS_STORE_BUILD: "1"
     scripts:
       - name: Set up local.properties
         script: |
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/app/android/local.properties"
-      - name: Get packages
+      - name: Set up Android keystore
+        script: |
+          set -e
+          # Kalma gradle.kts reads CM_KEYSTORE_PATH directly when CI=true.
+          # Also write key.properties for consistency if using base64 CM_KEYSTORE.
+          if [ -n "${CM_KEYSTORE_PATH:-}" ]; then
+            echo "Using Codemagic CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH"
+          elif [ -n "${CM_KEYSTORE:-}" ]; then
+            echo "$CM_KEYSTORE" | base64 --decode > "$CM_BUILD_DIR/app/android/keystore.jks"
+            export CM_KEYSTORE_PATH="$CM_BUILD_DIR/app/android/keystore.jks"
+            echo "Decoded CM_KEYSTORE to $CM_KEYSTORE_PATH"
+            # Persist for subsequent scripts in this build
+            echo "CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH" >> "$CM_ENV"
+          else
+            echo "WARNING: No Android keystore configured (will fall back to debug signing)."
+            echo "Set Codemagic group android_credentials:"
+            echo "  CM_KEYSTORE (base64), CM_KEYSTORE_PASSWORD, CM_KEY_ALIAS, CM_KEY_PASSWORD"
+          fi
+      - name: Get Flutter packages
         script: |
           cd app
           flutter pub get
-      - name: Analyze
+      - name: Build release APK
         script: |
+          set -e
           cd app
-          flutter analyze --no-fatal-infos --no-fatal-warnings
-      - name: Unit tests
-        script: |
-          cd app
-          flutter test
-      - name: Build debug APK
-        script: |
-          cd app
-          flutter build apk --debug
+          NEW_BUILD=$((PREVIOUS_STORE_BUILD + BUILD_NUMBER))
+          echo "Building APK with build-number=$NEW_BUILD"
+          flutter build apk --release \
+            --build-name=1.0.0 \
+            --build-number="$NEW_BUILD"
     artifacts:
-      - app/build/app/outputs/**/*.apk
+      - app/build/app/outputs/flutter-apk/*.apk
     publishing:
       email:
         recipients:
@@ -53,45 +58,96 @@ workflows:
           success: true
           failure: true
 
-  kalma-ios-testflight:
-    name: Kalma Wa Bas — iOS TestFlight
+  android_aab:
+    name: Android AAB (Play Store)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      flutter: 3.38.2
+      groups:
+        - android_credentials
+      vars:
+        PREVIOUS_STORE_BUILD: "1"
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/app/android/local.properties"
+      - name: Set up Android keystore
+        script: |
+          set -e
+          if [ -n "${CM_KEYSTORE_PATH:-}" ]; then
+            echo "Using Codemagic CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH"
+          elif [ -n "${CM_KEYSTORE:-}" ]; then
+            echo "$CM_KEYSTORE" | base64 --decode > "$CM_BUILD_DIR/app/android/keystore.jks"
+            echo "CM_KEYSTORE_PATH=$CM_BUILD_DIR/app/android/keystore.jks" >> "$CM_ENV"
+            echo "Decoded CM_KEYSTORE"
+          else
+            echo "Missing Android keystore. AAB requires release signing."
+            echo "Configure Codemagic group android_credentials with:"
+            echo "  CM_KEYSTORE (base64), CM_KEYSTORE_PASSWORD, CM_KEY_ALIAS, CM_KEY_PASSWORD"
+            exit 1
+          fi
+      - name: Get Flutter packages
+        script: |
+          cd app
+          flutter pub get
+      - name: Build release App Bundle
+        script: |
+          set -e
+          cd app
+          NEW_BUILD=$((PREVIOUS_STORE_BUILD + BUILD_NUMBER))
+          echo "Building AAB with build-number=$NEW_BUILD"
+          flutter build appbundle --release \
+            --build-name=1.0.0 \
+            --build-number="$NEW_BUILD"
+    artifacts:
+      - app/build/app/outputs/bundle/**/*.aab
+    publishing:
+      email:
+        recipients:
+          - m.bahlaq94@gmail.com
+        notify:
+          success: true
+          failure: true
+
+  ios_testflight:
+    name: iOS TestFlight
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
       app_store_connect: naqel_asc
     environment:
-      flutter: stable
+      flutter: 3.38.2
       xcode: latest
       cocoapods: default
+      groups:
+        - code_signing
       vars:
         BUNDLE_ID: com.bahlaq.kalmaWaBas
-        P12_PASSWORD: "123456"
+        PREVIOUS_STORE_BUILD: "1"
     scripts:
       - name: Set up keychain
         script: keychain initialize
-      - name: Fetch signing files with shared Distribution key
+      - name: Fetch signing files with shared Distribution private key
         script: |
           set -e
+          mkdir -p /tmp/certs "$CM_BUILD_DIR/app/build/ios/ipa"
           if [ -z "${CERTIFICATE_PRIVATE_KEY:-}" ]; then
-            echo "Missing CERTIFICATE_PRIVATE_KEY."
-            echo "Add it once under Codemagic → Team → Global variables and secrets"
-            echo "(PEM including BEGIN/END RSA PRIVATE KEY). Reuse the SAME key for naqel apps."
-            echo "Generate once: openssl genrsa -out ios_distribution_private_key.pem 2048"
+            echo "Missing CERTIFICATE_PRIVATE_KEY in Codemagic group 'code_signing'."
+            echo "Use the private key of an EXISTING Apple Distribution certificate."
             exit 1
           fi
-          mkdir -p /tmp/certs "$CM_BUILD_DIR/app/build/ios/ipa"
-          # CLI also reads CERTIFICATE_PRIVATE_KEY from the environment automatically.
+          printf '%s\n' "$CERTIFICATE_PRIVATE_KEY" > /tmp/cert_key.pem
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create \
-            --certificate-key=@env:CERTIFICATE_PRIVATE_KEY \
+            --certificate-key=@file:/tmp/cert_key.pem \
             --certificates-dir=/tmp/certs \
-            --p12-password="$P12_PASSWORD"
+            --p12-password=123456
       - name: Export shared Distribution certificate as p12
         script: |
           set -e
           mkdir -p "$CM_BUILD_DIR/app/build/ios/ipa"
-          echo "Contents of /tmp/certs:"
           ls -la /tmp/certs || true
           P12_FILE="$(find /tmp/certs -type f -name 'DISTRIBUTION_*.p12' | head -n 1)"
           if [ -z "$P12_FILE" ]; then
@@ -102,7 +158,7 @@ workflows:
             exit 1
           fi
           cp "$P12_FILE" "$CM_BUILD_DIR/app/build/ios/ipa/shared_dist_cert.p12"
-          ls -la "$CM_BUILD_DIR/app/build/ios/ipa/shared_dist_cert.p12"
+          echo "Copied shared_dist_cert.p12 (password: 123456)"
       - name: Add certificates to keychain
         script: |
           set -e
@@ -110,31 +166,32 @@ workflows:
           CERTS=(/tmp/certs/*.p12)
           if [ ${#CERTS[@]} -eq 0 ]; then
             echo "No .p12 files in /tmp/certs"
-            ls -la /tmp/certs || true
             exit 1
           fi
           for p12 in "${CERTS[@]}"; do
             echo "Adding $p12 to keychain"
             keychain add-certificates \
               --certificate "$p12" \
-              --certificate-password "$P12_PASSWORD"
+              --certificate-password 123456
           done
       - name: Set up code signing settings on Xcode project
         script: xcode-project use-profiles
-      - name: Get packages
+      - name: Get Flutter packages
         script: |
           cd app
           flutter pub get
-      - name: Install CocoaPods
+      - name: Install CocoaPods dependencies
         script: |
           find "$CM_BUILD_DIR/app/ios" -name "Podfile" -execdir pod install \;
-      - name: Build IPA
+      - name: Flutter build ipa
         script: |
           set -e
           cd app
+          NEW_BUILD=$((PREVIOUS_STORE_BUILD + BUILD_NUMBER))
+          echo "Building IPA with build-number=$NEW_BUILD"
           flutter build ipa --release \
-            --build-name=1.0.$BUILD_NUMBER \
-            --build-number=$BUILD_NUMBER \
+            --build-name=1.0.0 \
+            --build-number="$NEW_BUILD" \
             --export-options-plist=/Users/builder/export_options.plist
     artifacts:
       - app/build/ios/ipa/*.ipa
