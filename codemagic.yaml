@@ -60,39 +60,35 @@ workflows:
           failure: true
 
   android_aab:
-    name: Android AAB (Play Store)
+    name: Android AAB Release
     max_build_duration: 60
     instance_type: mac_mini_m2
     environment:
       flutter: 3.38.2
       groups:
-        - android_credentials
+        - android_signing
       vars:
         PREVIOUS_STORE_BUILD: "1"
     scripts:
       - name: Set up local.properties
         script: |
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/app/android/local.properties"
-      - name: Set up Android keystore
+      - name: Decode keystore for release signing
         script: |
           set -e
-          if [ -n "${CM_KEYSTORE_PATH:-}" ]; then
-            echo "Using CM_KEYSTORE_PATH=$CM_KEYSTORE_PATH"
-          elif [ -n "${CM_KEYSTORE:-}" ]; then
-            echo "$CM_KEYSTORE" | base64 --decode > "$CM_BUILD_DIR/app/android/keystore.jks"
-            echo "CM_KEYSTORE_PATH=$CM_BUILD_DIR/app/android/keystore.jks" >> "$CM_ENV"
-            echo "Decoded CM_KEYSTORE"
-          else
-            echo "Missing Android keystore. AAB requires release signing."
-            echo "Codemagic → Environment variables → group android_credentials:"
+          if [ -z "${CM_KEYSTORE:-}" ] || [ -z "${CM_KEYSTORE_PASSWORD:-}" ] || [ -z "${CM_KEY_ALIAS:-}" ] || [ -z "${CM_KEY_PASSWORD:-}" ]; then
+            echo "Missing android_signing vars. Required:"
             echo "  CM_KEYSTORE (base64), CM_KEYSTORE_PASSWORD, CM_KEY_ALIAS, CM_KEY_PASSWORD"
             exit 1
           fi
+          echo "$CM_KEYSTORE" | base64 --decode > "$CM_BUILD_DIR/app/android/keystore.jks"
+          echo "CM_KEYSTORE_PATH=$CM_BUILD_DIR/app/android/keystore.jks" >> "$CM_ENV"
+          echo "Decoded CM_KEYSTORE to $CM_BUILD_DIR/app/android/keystore.jks"
       - name: Get Flutter packages
         script: |
           cd app
           flutter pub get
-      - name: Build release App Bundle
+      - name: Build signed release App Bundle
         script: |
           set -e
           cd app
@@ -102,7 +98,7 @@ workflows:
             --build-name=1.0.0 \
             --build-number="$NEW_BUILD"
     artifacts:
-      - app/build/app/outputs/bundle/**/*.aab
+      - app/build/app/outputs/**/*.aab
     publishing:
       email:
         recipients:

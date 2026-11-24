@@ -31,9 +31,10 @@ android {
 
     signingConfigs {
         create("release") {
-            // Codemagic injects CM_* when android_signing is configured.
-            if (System.getenv("CI") == "true" && System.getenv("CM_KEYSTORE_PATH") != null) {
-                storeFile = file(System.getenv("CM_KEYSTORE_PATH")!!)
+            // Codemagic android_aab: script decodes CM_KEYSTORE → CM_KEYSTORE_PATH.
+            val keystorePath = System.getenv("CM_KEYSTORE_PATH")
+            if (System.getenv("CI") == "true" && keystorePath != null) {
+                storeFile = file(keystorePath)
                 storePassword = System.getenv("CM_KEYSTORE_PASSWORD")
                 keyAlias = System.getenv("CM_KEY_ALIAS")
                 keyPassword = System.getenv("CM_KEY_PASSWORD")
