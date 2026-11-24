@@ -9,7 +9,7 @@ workflows:
     environment:
       flutter: 3.38.2
       groups:
-        - android_credentials
+        - android_signing
       vars:
         PREVIOUS_STORE_BUILD: "1"
     scripts:
@@ -29,7 +29,7 @@ workflows:
             echo "Decoded CM_KEYSTORE"
           else
             echo "HAS_RELEASE_KEYSTORE=0" >> "$CM_ENV"
-            echo "No android_credentials keystore — will build debug APK"
+            echo "No android_signing keystore — will build debug APK"
           fi
       - name: Get Flutter packages
         script: |
@@ -117,8 +117,8 @@ workflows:
       flutter: 3.38.2
       xcode: latest
       cocoapods: default
-      groups:
-        - code_signing
+      # Do not reference unknown Codemagic groups (fails before scripts run).
+      # Optional: set CERTIFICATE_PRIVATE_KEY as a workflow/app env var if available.
       vars:
         BUNDLE_ID: com.bahlaq.kalmaWaBas
         PREVIOUS_STORE_BUILD: "1"
