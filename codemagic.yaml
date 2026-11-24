@@ -1,14 +1,9 @@
 # Codemagic: Android debug APK + iOS TestFlight
 # Flutter project lives in /app
 #
-# iOS Bundle IDs (from app/ios/Runner.xcodeproj/project.pbxproj):
-#   App target:  com.bahlaq.kalmaWaBas
-#   Tests only:  com.bahlaq.kalmaWaBas.RunnerTests  (not shipped; no App Store profile)
-# No app extensions found.
-#
-# Codemagic UI: App Store Connect integration must be named `naqel_asc`
-# (API key with App Manager). Signing files are fetched via API (--create);
-# do not run keychain add-certificates before fetch-signing-files.
+# iOS Bundle ID: com.bahlaq.kalmaWaBas (no app extensions)
+# Signing matches Bahlaq/naqel-driver (same account + naqel_asc integration):
+#   openssl key → fetch-signing-files into /tmp/certs → keychain add-certificates --certificate
 
 workflows:
   kalma-android-apk:
@@ -51,7 +46,7 @@ workflows:
 
   kalma-ios-testflight:
     name: Kalma Wa Bas — iOS TestFlight
-    max_build_duration: 90
+    max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
       app_store_connect: naqel_asc
@@ -63,19 +58,53 @@ workflows:
         BUNDLE_ID: com.bahlaq.kalmaWaBas
     scripts:
       - name: Set up keychain
+        script: keychain initialize
+      - name: Generate certificate key and fetch signing files
         script: |
-          keychain initialize
-      - name: Fetch signing files
-        script: |
+          set -e
+          mkdir -p /tmp/certs "$CM_BUILD_DIR/app/build/ios/ipa"
+          openssl genrsa -out /tmp/cert_key.pem 2048
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
-            --create
+            --create \
+            --certificate-key=@file:/tmp/cert_key.pem \
+            --certificates-dir=/tmp/certs \
+            --p12-password=123456
+      - name: Export shared Distribution certificate as p12
+        script: |
+          set -e
+          mkdir -p "$CM_BUILD_DIR/app/build/ios/ipa"
+          echo "Contents of /tmp/certs:"
+          ls -la /tmp/certs || true
+          P12_FILE="$(find /tmp/certs -type f -name 'DISTRIBUTION_*.p12' | head -n 1)"
+          if [ -z "$P12_FILE" ]; then
+            P12_FILE="$(find /tmp/certs -type f -name '*.p12' | head -n 1)"
+          fi
+          if [ -z "$P12_FILE" ]; then
+            echo "No DISTRIBUTION p12 found in /tmp/certs"
+            exit 1
+          fi
+          cp "$P12_FILE" "$CM_BUILD_DIR/app/build/ios/ipa/shared_dist_cert.p12"
+          ls -la "$CM_BUILD_DIR/app/build/ios/ipa/shared_dist_cert.p12"
+          echo "Copied shared_dist_cert.p12 from $P12_FILE (password: 123456)"
       - name: Add certificates to keychain
         script: |
-          keychain add-certificates
+          set -e
+          shopt -s nullglob
+          CERTS=(/tmp/certs/*.p12)
+          if [ ${#CERTS[@]} -eq 0 ]; then
+            echo "No .p12 files in /tmp/certs"
+            ls -la /tmp/certs || true
+            exit 1
+          fi
+          for p12 in "${CERTS[@]}"; do
+            echo "Adding $p12 to keychain"
+            keychain add-certificates \
+              --certificate "$p12" \
+              --certificate-password 123456
+          done
       - name: Set up code signing settings on Xcode project
-        script: |
-          xcode-project use-profiles
+        script: xcode-project use-profiles
       - name: Get packages
         script: |
           cd app
@@ -85,6 +114,7 @@ workflows:
           find "$CM_BUILD_DIR/app/ios" -name "Podfile" -execdir pod install \;
       - name: Build IPA
         script: |
+          set -e
           cd app
           flutter build ipa --release \
             --build-name=1.0.$BUILD_NUMBER \
@@ -92,6 +122,7 @@ workflows:
             --export-options-plist=/Users/builder/export_options.plist
     artifacts:
       - app/build/ios/ipa/*.ipa
+      - app/build/ios/ipa/shared_dist_cert.p12
       - /tmp/xcodebuild_logs/*.log
     publishing:
       email:
