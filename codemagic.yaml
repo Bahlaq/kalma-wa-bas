@@ -1,9 +1,18 @@
 # Codemagic: Android debug APK + iOS TestFlight
 # Flutter project lives in /app
 #
-# iOS Bundle ID: com.bahlaq.kalmaWaBas (no app extensions)
-# Signing matches Bahlaq/naqel-driver (same account + naqel_asc integration):
-#   openssl key → fetch-signing-files into /tmp/certs → keychain add-certificates --certificate
+# iOS Bundle ID: com.bahlaq.kalmaWaBas
+# App Store Connect integration: naqel_asc
+#
+# IMPORTANT — shared Distribution certificate (same Apple team as naqel-driver):
+# Apple allows only ~2–3 Distribution certs. Do NOT openssl-gen a new key per build.
+# Store ONE RSA private key as Codemagic global variable CERTIFICATE_PRIVATE_KEY
+# (Team → codemagic.yaml settings → Global variables and secrets) and reuse it for
+# kalma-wa-bas + naqel-driver + naqel-user.
+#
+# If builds still 409 "already have a Distribution certificate":
+# delete one unused "Created via API" Distribution cert at developer.apple.com,
+# then rebuild once so this shared key can create/match a single cert.
 
 workflows:
   kalma-android-apk:
@@ -56,20 +65,28 @@ workflows:
       cocoapods: default
       vars:
         BUNDLE_ID: com.bahlaq.kalmaWaBas
+        P12_PASSWORD: "123456"
     scripts:
       - name: Set up keychain
         script: keychain initialize
-      - name: Generate certificate key and fetch signing files
+      - name: Fetch signing files with shared Distribution key
         script: |
           set -e
+          if [ -z "${CERTIFICATE_PRIVATE_KEY:-}" ]; then
+            echo "Missing CERTIFICATE_PRIVATE_KEY."
+            echo "Add it once under Codemagic → Team → Global variables and secrets"
+            echo "(PEM including BEGIN/END RSA PRIVATE KEY). Reuse the SAME key for naqel apps."
+            echo "Generate once: openssl genrsa -out ios_distribution_private_key.pem 2048"
+            exit 1
+          fi
           mkdir -p /tmp/certs "$CM_BUILD_DIR/app/build/ios/ipa"
-          openssl genrsa -out /tmp/cert_key.pem 2048
+          # CLI also reads CERTIFICATE_PRIVATE_KEY from the environment automatically.
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create \
-            --certificate-key=@file:/tmp/cert_key.pem \
+            --certificate-key=@env:CERTIFICATE_PRIVATE_KEY \
             --certificates-dir=/tmp/certs \
-            --p12-password=123456
+            --p12-password="$P12_PASSWORD"
       - name: Export shared Distribution certificate as p12
         script: |
           set -e
@@ -86,7 +103,6 @@ workflows:
           fi
           cp "$P12_FILE" "$CM_BUILD_DIR/app/build/ios/ipa/shared_dist_cert.p12"
           ls -la "$CM_BUILD_DIR/app/build/ios/ipa/shared_dist_cert.p12"
-          echo "Copied shared_dist_cert.p12 from $P12_FILE (password: 123456)"
       - name: Add certificates to keychain
         script: |
           set -e
@@ -101,7 +117,7 @@ workflows:
             echo "Adding $p12 to keychain"
             keychain add-certificates \
               --certificate "$p12" \
-              --certificate-password 123456
+              --certificate-password "$P12_PASSWORD"
           done
       - name: Set up code signing settings on Xcode project
         script: xcode-project use-profiles
