@@ -7,7 +7,8 @@
 # No app extensions found.
 #
 # Codemagic UI: App Store Connect integration must be named `naqel_asc`
-# and a distribution certificate must be uploaded for keychain add-certificates.
+# (API key with App Manager). Signing files are fetched via API (--create);
+# do not run keychain add-certificates before fetch-signing-files.
 
 workflows:
   kalma-android-apk:
@@ -64,14 +65,14 @@ workflows:
       - name: Set up keychain
         script: |
           keychain initialize
-      - name: Add certificates
-        script: |
-          keychain add-certificates
       - name: Fetch signing files
         script: |
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create
+      - name: Add certificates to keychain
+        script: |
+          keychain add-certificates
       - name: Set up code signing settings on Xcode project
         script: |
           xcode-project use-profiles
