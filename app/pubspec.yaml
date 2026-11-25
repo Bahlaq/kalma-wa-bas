@@ -4,7 +4,8 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.14.0
+  # Match Codemagic / naqel-user Flutter 3.38.2 (Dart 3.10.x)
+  sdk: ">=3.4.3 <4.0.0"
 
 dependencies:
   flutter:
