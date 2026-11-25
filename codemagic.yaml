@@ -117,8 +117,9 @@ workflows:
       flutter: 3.38.2
       xcode: latest
       cocoapods: default
-      # Do not reference unknown Codemagic groups (fails before scripts run).
-      # Optional: set CERTIFICATE_PRIVATE_KEY as a workflow/app env var if available.
+      # Shared Apple Distribution private key (team-wide). Android untouched.
+      groups:
+        - ios_signing
       vars:
         BUNDLE_ID: com.bahlaq.kalmaWaBas
         PREVIOUS_STORE_BUILD: "1"
@@ -129,13 +130,12 @@ workflows:
         script: |
           set -e
           mkdir -p /tmp/certs "$CM_BUILD_DIR/app/build/ios/ipa"
-          if [ -n "${CERTIFICATE_PRIVATE_KEY:-}" ]; then
-            echo "Using CERTIFICATE_PRIVATE_KEY from code_signing group"
-            printf '%s\n' "$CERTIFICATE_PRIVATE_KEY" > /tmp/cert_key.pem
-          else
-            echo "CERTIFICATE_PRIVATE_KEY not set — generating temporary key (openssl genrsa)"
-            openssl genrsa -out /tmp/cert_key.pem 2048
+          if [ -z "${CERTIFICATE_PRIVATE_KEY:-}" ]; then
+            echo "Missing CERTIFICATE_PRIVATE_KEY in Codemagic group 'ios_signing'."
+            exit 1
           fi
+          echo "Using CERTIFICATE_PRIVATE_KEY from ios_signing group"
+          printf '%s\n' "$CERTIFICATE_PRIVATE_KEY" > /tmp/cert_key.pem
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create \
